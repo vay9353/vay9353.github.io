@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[box-shadow应用]]></title>
+    <url>%2F2019%2F05%2F20%2Fbox-shadow%E5%BA%94%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[上篇文章了解了box-shadow的基础知识，这篇文章来一起探讨下box-shdow的一些应用一、阴影作为阴影应该是最简单和基础的了，给元素设置阴影会给人立体的感觉如下： 123456.box &#123; width: 200px; height: 100px; background-color: yellowgreen; box-shadow: 0 0 3px #000;&#125; 二、边框box-shadow的spread-radius扩展半径，是可以作为边框使用的，并且阴影不算作内容的特点，使得它在布局中有一定用处 简单边框123456.box &#123; width: 200px; height: 100px; background-color: yellowgreen; box-shadow: 0 0 0 1px #000;&#125; 多层边框123box-shadow: 0 0 0 1px #000,0 0 0 5px #ace,0 0 0 10px #fad; 双色括号123box-shadow: -33px -33px 0 -30px #aaccee,33px 33px 0 -30px #fad;padding: 20px; 对于边框的使用，其实是有局限性的，因为扩展半径只能设置一个值，所以不能针对水平和垂直方向去伸缩，所以边框的长度是和原图成比例的。对于双色边框：实际上是需要计算，至于计算的过程，这里就不想祥说了，画一个最终要实现的结果图，一切就算出来了，不过结果还是以一边为基准。因为两个边是成比例的，无法分别控制两边 多色边框1234box-shadow: -30px -30px 0 #aaccee,30px -30px 0 #fad,-30px 30px 0 #d34,30px 30px 0 #aba; 模拟渐变 模糊和渐变是有一定关系的，所以我们这里可以用box-shadow模拟渐变 12box-shadow: inset 50px 0 100px #000,inset -50px 0 100px #fff; 简单说明： offset设置正负，将阴影移动到对侧，长度为容器一半的一半，这样配合一半的模糊，正好完成自已一侧的渐变，且不会影响另一侧offsety设置为0，去除垂直阴影干扰blur-radius:设置为容器宽度的一半，正好模糊全自己的一侧 单侧投影 阴影距离其他三个边的距离应该大于等于模糊半径的一半， 这样模糊时，才不会干扰其他边 缩小阴影才能满足第一个条件，使用spread-radius 使用offset移向要显示阴影的一边 1box-shadow: 0 2px 4px -2px #000; spread-radius: -2px =&gt; 为左右留下2px的缝隙，此时最大设置的模糊半径为4px 如果想加重阴影，可以增大offsetY的值 临边投影 这个比较简单，设置offset的值，并且考虑好模糊半径就好了，如果想增大模糊半径的值，可以增大offset或者减小spread-radius1box-shadow: 2px 2px 4px 0 #000; 对侧投影 这个也比较简单，但只能通过设置两个投影解决，生成一侧投影的方法上面已经介绍过了，这里不赘述了12box-shadow: 2px 0 4px -2px #000,-2px 0 4px 2px #000; 三、drop-shadow最后一点，说说box-shadow的缺点，前面提到过box-shadow为非inset的时候，产生的阴影都只会在盒子外部，和与盒子重叠的部分，则被裁剪了。存在一个中间透明的盒子，但是有边框，此时增加投影，发现也只有四周有，如下： 12border: 2px solid red;box-shadow: 5px 5px 5px #000; 可以看到，盒子内部是镂空的，但是却没有阴影,还有就是这种对话框： 一般三角形，是设置border-right-color有颜色，其他透明来实现了，如果直接给三角设置阴影会给整个盒子设置阴影：如下 所以，我们需要让三角出现在框的内部，然后给框设置drop-shadow就可以啦 所以说，box-shadow它的重点是box然后才是，shadow。所以说，他只是盒子整体的阴影，而不关心盒子的内部，至于盒子内部有没有产生阴影并不关心，他只是拿到这个盒子，然后对整体做一个阴影，可以想一下之前介绍的阴影的产生过程，不就是一开始就产生了一个跟盒子面积相同的阴影然后裁剪么，至于盒子内部根本就没关心好么，他只是关心了盒子本身而已！ 而我们需要的阴影，更像是有一束光在上面，然后光线撒下来，照在下面这个物体上，该有什么阴影，产生什么阴影，这时候，就要引入drop-shadow了，将上面的两个效果用drop-shadow改变，如下： 12border: 2px solid red;filter: drop-shadow(0 0 5px #000); 只要是有透明的空隙，又不透明的物体，都可以产生阴影 drop-shadow语法跟box-shadow类似，但区别还是有的： 没有inset属性 这个好理解，为了模仿真实光照吗，你总不能控制太阳的阴影只能往里面吧 没有spread-radius 原因同上 不能设置多个值 同上，太阳只有一个 虽然值相同，但是计算方式有一些不一样，需要注意 参考但不仅限以下文章，如有侵权请联系 https://www.zhangxinxu.com/wordpress/2016/05/css3-filter-drop-shadow-vs-box-shadow/]]></content>
+      <categories>
+        <category>css</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+        <tag>box-shadow</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[box-shadow属性详解]]></title>
+    <url>%2F2019%2F05%2F18%2Fbox-shadow%2F</url>
+    <content type="text"><![CDATA[box-shadow是css中最基础的属性之一，都知道box-shadow可以生成阴影，那么它的生成阴影的过程是什么呢？以及如何用box-shadow制作不同的效果呢？相信你看完本文，会有自己的答案！一、基本概念首先看下MDN上的定义: box-shadow 以由逗号分隔的列表来描述一个或多个阴影效果。该属性可以让几乎所有元素的边框产生阴影。如果元素同时设置了 border-radius ，阴影也会有圆角效果。多个阴影的z-ordering 和多个 text shadows 规则相同(第一个阴影在最上面)。 基本用法： 值的说明： 简单说明： inset关键字，可设可不设，inset代表阴影是向内的 color，这个值可设可不设，但是因为用户代理不同，阴影的颜色的默认值也会不同，所以建议统一设置 可以给一个元素设置多个box-shadow，每一组用逗号“,”隔开，并且越靠前的优先级越高，会覆盖后面的阴影 二、从一个简答的例子开始，了解box-shadow的生成过程html:12&lt;div class=&quot;box&quot;&gt;&lt;div&gt; css:123456.box &#123; width: 300px; height: 200px; background-color: yellowgreen; box-shadow: 30px 50px 20px #000;&#125; 首先在box元素的上层生成一个同box大小，形状完全相同的阴影，这里为矩形，颜色为#000注意，此时阴影是在元素的上层 根据offset-x和offset-y，将阴影逐渐从上层移动出来，得到的结果就是，阴影向右移动30px，向下移动50px 这里我们设置了一个20px的模糊半径，此时就会以四个方向，每个方向的阴影边缘线为中心，左右扩展10px的区域，共20px，共同组成这个阴影区域，如下图：这里只用右侧举例，从阴影边缘开始，左右各一半高斯模糊，共同组成模糊的半径，那么四个方向都会产生模糊效果 现在只剩下最后一步，就是将阴影与元素重叠的区域全部裁剪掉，如下图虚线内容裁剪后就是我们最终的结果：这里唯一需要注意的是，阴影本质是在元素上方的，并且最终被裁剪掉，而不是出现在元素的下方，所以从这点来说，是不同于text-shadow的，因为text-shadow是出现在元素下方的，并且不会有裁剪的过程，证明起来也很简单，分别给元素和字体设置透明就好了。div设置透明颜色 很明显下面什么也没有 三、进一步了解参数offset这个属性比较简单，只用考虑是否为inset就行了 非inset: 正负：阴影移动的方向。向右，向下为正值。 大小：阴影移动的距离 inset: 正负：表示从哪条边出现阴影。正：左上，负：右下 大小：表示阴影在某一侧的长度具体内容，可以看下面inset的例子 blur-radius高斯模糊的半径，从上面例子就可以了解到了。用来设置阴影边缘的模糊的。不可以为负值。 spread-radius我们了解了阴影是如何生成的，以及高斯模糊半径的作用范围，现在我们聊一下另一个属性：spread-radius，这个属性称之为扩展半径，扩展二字就很能说明问题了，其实它就是扩展的阴影面积的大小。一开始，阴影的面积是等于元素的尺寸的，我们的模糊半径也只能从这个阴影的边缘两侧开启高斯模糊，当我们想修改这个阴影的面积时，就用到了spread-radius属性。spread-radius表示四个方向增大或者减小的尺寸。我们修改上面的box-shadow参数，增加扩展半径，去除模糊半径，利于观察1box-shadow: 30px 50px 0 30px #000; 绿色：box元素自身的尺寸 灰色：未设置扩展半径的阴影区域 黑色边框：扩展半径的尺寸 虚线区域：每一侧增加的扩展半径 30px上图其实已经很能说明问题了，黑色边框的高度正好就是30px，正好四个方向，每一个方向都增大30px的长度，那么阴影水平和垂直都增加（30px + 30px）60px因为扩展半径增大了阴影的面积，所以，模糊半径也会从增大后的阴影边缘向两侧模糊，所以如果设置了模糊半径，效果如下：1box-shadow: 30px 50px 10px 30px #000; spread-radius 负值是的，spread-radius是可以设置负数值的，会在水平和垂直方向减小阴影的尺寸。在后续的场景中，我会详细讲解这个负数值的应用 insetinset属性在某些场合也用到很多，原理相同，但是细节有些不一样修改上上面的参数为inset1box-shadow: inset 30px 50px 0 0 #000; 当修改offset为负值时：1box-shadow: inset -30px -50px 0 0 #000; 由上面可以看出，在inset模式下 offset会选择从哪条边，渲染阴影，这点是不同的 spread-radius和offset值配合起来的最大值也不能超出元素的尺寸，因为如果超出元素，那么设置这个元素就没有意义了，因为它已经看不见了 四、补充 阴影是不会作为内容计算的，这就意味着：父元素不会因为阴影产生滚动条 不会对布局产生影响，所以阴影可能会覆盖其他元素 为什么叫box-shadow 表明这只是对盒子的阴影，跟盒子里面的内容没有关系，并不是真正意义的单侧光源阴影，从上面阴影的生成过程就已经就可以了解到，第一步就是生成等同box的阴影，并不会考虑盒子内部是否透明，内部透明是否也能产生阴影，因为阴影会根据盒子裁剪重合的部分。这也就是它和drop-shadow的区别，后面的应用会具体比较描述。 阴影的大小依据，是根据border-box的。 上面的案例，一直没有设置padding和border，所以看不出来，我们可以设置padding，border试试: 123456789.box &#123; width: 300px; height: 200px; background-color: yellowgreen; box-shadow: 30px 50px 0 0 #000; background-clip: content-box; padding: 20px; border: 30px solid red;&#125; 可以看出，阴影的大小是border-box的大小，而不是content-box，包括设置border-radius，也是如此，与border-box保持一致 对于inset，阴影也是从border内边缘扩展 最后，最重量级的图，w3c给出的box-shadow的示意图 一开始，没展示的原因是，怕一上来就展示大家可能一头雾水，如果你看到这里，再看到这个图，我相信你会豁然开朗。 下一节，我们将一起了解box-shadow的应用]]></content>
+      <categories>
+        <category>css</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+        <tag>box-shadow</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CSS transform 3D]]></title>
+    <url>%2F2019%2F05%2F14%2Ftransform-3D%2F</url>
+    <content type="text"><![CDATA[transform 2D效果相对比较简答，只是在一个平面的变化，这篇文章将逐步简单介绍一下tranform 3D的效果以及原理一、认识transform转换的坐标轴下图是transform转换的轴模型，我们页面上的元素，实际上就出在这样一个立体的坐标系中 二、从一个特性入手，了解3D转换原理rotate: 旋转这个特性其实在2d的时候了解过，填入的值为css角度值(deg, turn, rad)，如果为正值，元素则顺时针旋转，负值为逆时针而在3D模型下，还有三个属性： rotateX(): 沿着X轴旋转 如下图，人物沿着x轴旋转]]></content>
+      <categories>
+        <category>CSS</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+        <tag>transform</tag>
+        <tag>动画</tag>
+      </tags>
+  </entry>
+</search>

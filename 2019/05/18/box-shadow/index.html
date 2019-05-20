@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next gemini" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="box-shadow是css中最基础的属性之一，都知道box-shadow可以生成阴影，那么它的生成阴影的过程是什么呢？以及如何用box-shadow制作不同的效果呢？相信你看完本文，会有自己的答案！一、基本概念首先看下MDN上的定义: box-shadow 以由逗号分隔的列表来描述一个或多个阴影效果。该属性可以让几乎所有元素的边框产生阴影。如果元素同时设置了 border-radius ，阴影也">
+<meta name="keywords" content="css,box-shadow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="box-shadow属性详解">
+<meta property="og:url" content="https://vay9353.github.io/2019/05/18/box-shadow/index.html">
+<meta property="og:site_name" content="vay&#39;s life">
+<meta property="og:description" content="box-shadow是css中最基础的属性之一，都知道box-shadow可以生成阴影，那么它的生成阴影的过程是什么呢？以及如何用box-shadow制作不同的效果呢？相信你看完本文，会有自己的答案！一、基本概念首先看下MDN上的定义: box-shadow 以由逗号分隔的列表来描述一个或多个阴影效果。该属性可以让几乎所有元素的边框产生阴影。如果元素同时设置了 border-radius ，阴影也">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://vay9353.github.io/2019/05/18/box-shadow/定义.png">
+<meta property="og:image" content="https://vay9353.github.io/2019/05/18/box-shadow/说明.png">
+<meta property="og:image" content="https://vay9353.github.io/2019/05/18/box-shadow/2-1.png">
+<meta property="og:image" content="https://vay9353.github.io/2019/05/18/box-shadow/2-2.png">
+<meta property="og:image" content="https://vay9353.github.io/2019/05/18/box-shadow/2-3.png">
+<meta property="og:image" content="https://vay9353.github.io/2019/05/18/box-shadow/2-4.png">
+<meta property="og:image" content="https://vay9353.github.io/2019/05/18/box-shadow/2-5.png">
+<meta property="og:image" content="https://vay9353.github.io/2019/05/18/box-shadow/2-6.png">
+<meta property="og:image" content="https://vay9353.github.io/2019/05/18/box-shadow/2-7-1.png">
+<meta property="og:image" content="https://vay9353.github.io/2019/05/18/box-shadow/2-7-2.png">
+<meta property="og:image" content="https://vay9353.github.io/2019/05/18/box-shadow/3-1.png">
+<meta property="og:image" content="https://vay9353.github.io/2019/05/18/box-shadow/3-2.png">
+<meta property="og:image" content="https://vay9353.github.io/2019/05/18/box-shadow/3-3.png">
+<meta property="og:image" content="https://vay9353.github.io/2019/05/18/box-shadow/3-4.png">
+<meta property="og:image" content="https://vay9353.github.io/2019/05/18/box-shadow/4-1.png">
+<meta property="og:image" content="https://vay9353.github.io/2019/05/18/box-shadow/4-2.png">
+<meta property="og:image" content="https://vay9353.github.io/2019/05/18/box-shadow/4-3.png">
+<meta property="og:updated_time" content="2019-05-20T11:29:57.525Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="box-shadow属性详解">
+<meta name="twitter:description" content="box-shadow是css中最基础的属性之一，都知道box-shadow可以生成阴影，那么它的生成阴影的过程是什么呢？以及如何用box-shadow制作不同的效果呢？相信你看完本文，会有自己的答案！一、基本概念首先看下MDN上的定义: box-shadow 以由逗号分隔的列表来描述一个或多个阴影效果。该属性可以让几乎所有元素的边框产生阴影。如果元素同时设置了 border-radius ，阴影也">
+<meta name="twitter:image" content="https://vay9353.github.io/2019/05/18/box-shadow/定义.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="https://vay9353.github.io/2019/05/18/box-shadow/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>box-shadow属性详解 | vay's life</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/vay9353" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">vay's life</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vay9353.github.io/2019/05/18/box-shadow/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vay">
+      <meta itemprop="description" content="一个前端学弱狗。">
+      <meta itemprop="image" content="/images/head.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="vay's life">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">box-shadow属性详解
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-18 13:57:22" itemprop="dateCreated datePublished" datetime="2019-05-18T13:57:22+08:00">2019-05-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-20 19:29:57" itemprop="dateModified" datetime="2019-05-20T19:29:57+08:00">2019-05-20</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/05/18/box-shadow/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/18/box-shadow/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="box-shadow是css中最基础的属性之一，都知道box-shadow可以生成阴影，那么它的生成阴影的过程是什么呢？以及如何用box-shadow制作不同的效果呢？相信你看完本文，会有自己的答案！"><a href="#box-shadow是css中最基础的属性之一，都知道box-shadow可以生成阴影，那么它的生成阴影的过程是什么呢？以及如何用box-shadow制作不同的效果呢？相信你看完本文，会有自己的答案！" class="headerlink" title="box-shadow是css中最基础的属性之一，都知道box-shadow可以生成阴影，那么它的生成阴影的过程是什么呢？以及如何用box-shadow制作不同的效果呢？相信你看完本文，会有自己的答案！"></a>box-shadow是css中最基础的属性之一，都知道box-shadow可以生成阴影，那么它的生成阴影的过程是什么呢？以及如何用box-shadow制作不同的效果呢？相信你看完本文，会有自己的答案！</h3><h2 id="一、基本概念"><a href="#一、基本概念" class="headerlink" title="一、基本概念"></a>一、基本概念</h2><h4 id="首先看下MDN上的定义"><a href="#首先看下MDN上的定义" class="headerlink" title="首先看下MDN上的定义:"></a>首先看下MDN上的定义:</h4><blockquote>
+<p>box-shadow 以由逗号分隔的列表来描述一个或多个阴影效果。该属性可以让几乎所有元素的边框产生阴影。如果元素同时设置了 border-radius ，阴影也会有圆角效果。多个阴影的z-ordering 和多个 text shadows 规则相同(第一个阴影在最上面)。</p>
+</blockquote>
+<h4 id="基本用法："><a href="#基本用法：" class="headerlink" title="基本用法："></a>基本用法：</h4><p><img src="/2019/05/18/box-shadow/定义.png" alt="基本用法"></p>
+<h4 id="值的说明："><a href="#值的说明：" class="headerlink" title="值的说明："></a>值的说明：</h4><p><img src="/2019/05/18/box-shadow/说明.png" alt="值的说明"></p>
+<h4 id="简单说明："><a href="#简单说明：" class="headerlink" title="简单说明："></a>简单说明：</h4><ul>
+<li>inset关键字，可设可不设，inset代表阴影是向内的</li>
+<li>color，这个值可设可不设，但是因为用户代理不同，阴影的颜色的默认值也会不同，所以建议统一设置</li>
+<li>可以给一个元素设置多个box-shadow，每一组用逗号“,”隔开，并且越靠前的优先级越高，会覆盖后面的阴影</li>
+</ul>
+<h2 id="二、从一个简答的例子开始，了解box-shadow的生成过程"><a href="#二、从一个简答的例子开始，了解box-shadow的生成过程" class="headerlink" title="二、从一个简答的例子开始，了解box-shadow的生成过程"></a>二、从一个简答的例子开始，了解box-shadow的生成过程</h2><p>html:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;box&quot;&gt;</span><br><span class="line">&lt;div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>css:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.box &#123;</span><br><span class="line">    width: 300px;</span><br><span class="line">    height: 200px;</span><br><span class="line">    background-color: yellowgreen;</span><br><span class="line">    box-shadow: 30px 50px 20px #000;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li><p>首先在box元素的上层生成一个同box大小，形状完全相同的阴影，这里为矩形，颜色为#000<br><img src="/2019/05/18/box-shadow/2-1.png" height="200" width="300"><br>注意，此时阴影是在元素的上层</p>
+</li>
+<li><p>根据offset-x和offset-y，将阴影逐渐从上层移动出来，得到的结果就是，阴影向右移动30px，向下移动50px<br><img src="/2019/05/18/box-shadow/2-2.png" height="200" width="300"></p>
+</li>
+<li><p>这里我们设置了一个20px的模糊半径，此时就会以四个方向，每个方向的阴影边缘线为中心，左右扩展10px的区域，共20px，共同组成这个阴影区域，如下图：<br><img src="/2019/05/18/box-shadow/2-3.png" height="200" width="300"><br>这里只用右侧举例，从阴影边缘开始，左右各一半高斯模糊，共同组成模糊的半径，那么四个方向都会产生模糊效果</p>
+</li>
+<li><p>现在只剩下最后一步，就是将阴影与元素重叠的区域全部裁剪掉，如下图虚线内容<br><img src="/2019/05/18/box-shadow/2-4.png" height="200" width="300"><br>裁剪后就是我们最终的结果：<br><img src="/2019/05/18/box-shadow/2-5.png" height="200" width="300"><br>这里唯一需要注意的是，阴影本质是在元素上方的，并且最终被裁剪掉，而不是出现在元素的下方，所以从这点来说，是不同于text-shadow的，因为text-shadow是出现在元素下方的，并且不会有裁剪的过程，证明起来也很简单，分别给元素和字体设置透明就好了。<br>div设置透明颜色    很明显下面什么也没有<br><img src="/2019/05/18/box-shadow/2-6.png" height="100" width="200"><br><img src="/2019/05/18/box-shadow/2-7-1.png" height="100" width="200"><br><img src="/2019/05/18/box-shadow/2-7-2.png" height="100" width="200"></p>
+</li>
+</ol>
+<h2 id="三、进一步了解参数"><a href="#三、进一步了解参数" class="headerlink" title="三、进一步了解参数"></a>三、进一步了解参数</h2><h4 id="offset"><a href="#offset" class="headerlink" title="offset"></a>offset</h4><p>这个属性比较简单，只用考虑是否为inset就行了</p>
+<ul>
+<li>非inset:<br>  正负：阴影移动的方向。向右，向下为正值。<br>  大小：阴影移动的距离</li>
+<li>inset:<br>  正负：表示从哪条边出现阴影。正：左上，负：右下<br>  大小：表示阴影在某一侧的长度<br>具体内容，可以看下面inset的例子</li>
+</ul>
+<h4 id="blur-radius"><a href="#blur-radius" class="headerlink" title="blur-radius"></a>blur-radius</h4><p>高斯模糊的半径，从上面例子就可以了解到了。用来设置阴影边缘的模糊的。<br>不可以为负值。</p>
+<h4 id="spread-radius"><a href="#spread-radius" class="headerlink" title="spread-radius"></a>spread-radius</h4><p>我们了解了阴影是如何生成的，以及高斯模糊半径的作用范围，现在我们聊一下另一个属性：spread-radius，这个属性称之为扩展半径，扩展二字就很能说明问题了，其实它就是扩展的阴影面积的大小。一开始，阴影的面积是等于元素的尺寸的，我们的模糊半径也只能从这个阴影的边缘两侧开启高斯模糊，当我们想修改这个阴影的面积时，就用到了spread-radius属性。spread-radius表示四个方向增大或者减小的尺寸。<br>我们修改上面的box-shadow参数，增加扩展半径，去除模糊半径，利于观察<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">box-shadow: 30px 50px 0 30px #000;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/05/18/box-shadow/3-1.png" height="200" width="300"></p>
+<ul>
+<li>绿色：box元素自身的尺寸</li>
+<li>灰色：未设置扩展半径的阴影区域</li>
+<li>黑色边框：扩展半径的尺寸</li>
+<li>虚线区域：每一侧增加的扩展半径 30px<br>上图其实已经很能说明问题了，黑色边框的高度正好就是30px，正好四个方向，每一个方向都增大30px的长度，那么阴影水平和垂直都增加（30px + 30px）60px<br>因为扩展半径增大了阴影的面积，所以，模糊半径也会从增大后的阴影边缘向两侧模糊，所以如果设置了模糊半径，效果如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">box-shadow: 30px 50px 10px 30px #000;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="/2019/05/18/box-shadow/3-2.png" height="200" width="300"></p>
+<h4 id="spread-radius-负值"><a href="#spread-radius-负值" class="headerlink" title="spread-radius 负值"></a>spread-radius 负值</h4><p>是的，spread-radius是可以设置负数值的，会在水平和垂直方向减小阴影的尺寸。<br>在后续的场景中，我会详细讲解这个负数值的应用</p>
+<h4 id="inset"><a href="#inset" class="headerlink" title="inset"></a>inset</h4><p>inset属性在某些场合也用到很多，原理相同，但是细节有些不一样<br>修改上上面的参数为inset<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">box-shadow: inset 30px 50px 0 0 #000;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/05/18/box-shadow/3-3.png" height="200" width="300"><br>当修改offset为负值时：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">box-shadow: inset -30px -50px 0 0 #000;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/05/18/box-shadow/3-4.png" height="200" width="300"></p>
+<p>由上面可以看出，在inset模式下</p>
+<ul>
+<li>offset会选择从哪条边，渲染阴影，这点是不同的</li>
+<li>spread-radius和offset值配合起来的最大值也不能超出元素的尺寸，因为如果超出元素，那么设置这个元素就没有意义了，因为它已经看不见了</li>
+</ul>
+<h2 id="四、补充"><a href="#四、补充" class="headerlink" title="四、补充"></a>四、补充</h2><ul>
+<li>阴影是不会作为内容计算的，这就意味着：<pre><code>父元素不会因为阴影产生滚动条
+不会对布局产生影响，所以阴影可能会覆盖其他元素
+</code></pre></li>
+<li><p>为什么叫box-shadow</p>
+<ol>
+<li>表明这只是对盒子的阴影，跟盒子里面的内容没有关系，并不是真正意义的单侧光源阴影，从上面阴影的生成过程就已经就可以了解到，第一步就是生成等同box的阴影，并不会考虑盒子内部是否透明，内部透明是否也能产生阴影，因为阴影会根据盒子裁剪重合的部分。<br>这也就是它和drop-shadow的区别，后面的应用会具体比较描述。</li>
+<li><p>阴影的大小依据，是根据border-box的。<br> 上面的案例，一直没有设置padding和border，所以看不出来，我们可以设置padding，border试试:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.box &#123;</span><br><span class="line">    width: 300px;</span><br><span class="line">    height: 200px;</span><br><span class="line">    background-color: yellowgreen;</span><br><span class="line">    box-shadow: 30px 50px 0 0 #000;</span><br><span class="line">    background-clip: content-box;</span><br><span class="line">    padding: 20px;</span><br><span class="line">    border: 30px solid red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> <img src="/2019/05/18/box-shadow/4-1.png" height="200" width="300"><br> 可以看出，阴影的大小是border-box的大小，而不是content-box，包括设置border-radius，也是如此，与border-box保持一致</p>
+<p> 对于inset，阴影也是从border内边缘扩展<br> <img src="/2019/05/18/box-shadow/4-2.png" height="200" width="300"></p>
+</li>
+</ol>
+</li>
+<li>最后，最重量级的图，w3c给出的box-shadow的示意图<br>  一开始，没展示的原因是，怕一上来就展示大家可能一头雾水，如果你看到这里，再看到这个图，我相信你会豁然开朗。<br>  <img src="/2019/05/18/box-shadow/4-3.png" height="200" width="300"></li>
+</ul>
+<hr>
+<p>下一节，我们将一起了解box-shadow的应用</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/css/" rel="tag"><i class="fa fa-tag"></i> css</a>
+          
+            <a href="/tags/box-shadow/" rel="tag"><i class="fa fa-tag"></i> box-shadow</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/14/transform-3D/" rel="next" title="CSS transform 3D">
+                <i class="fa fa-chevron-left"></i> CSS transform 3D
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/20/box-shadow应用/" rel="prev" title="box-shadow应用">
+                box-shadow应用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/head.jpeg" alt="Vay">
+            
+              <p class="site-author-name" itemprop="name">Vay</p>
+              <div class="site-description motion-element" itemprop="description">一个前端学弱狗。</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/vay9353" title="GitHub &rarr; https://github.com/vay9353" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:wangzw9353@gmail.com" title="E-Mail &rarr; mailto:wangzw9353@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#box-shadow是css中最基础的属性之一，都知道box-shadow可以生成阴影，那么它的生成阴影的过程是什么呢？以及如何用box-shadow制作不同的效果呢？相信你看完本文，会有自己的答案！"><span class="nav-number">1.</span> <span class="nav-text">box-shadow是css中最基础的属性之一，都知道box-shadow可以生成阴影，那么它的生成阴影的过程是什么呢？以及如何用box-shadow制作不同的效果呢？相信你看完本文，会有自己的答案！</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#一、基本概念"><span class="nav-number"></span> <span class="nav-text">一、基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#首先看下MDN上的定义"><span class="nav-number">0.1.</span> <span class="nav-text">首先看下MDN上的定义:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基本用法："><span class="nav-number">0.2.</span> <span class="nav-text">基本用法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#值的说明："><span class="nav-number">0.3.</span> <span class="nav-text">值的说明：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简单说明："><span class="nav-number">0.4.</span> <span class="nav-text">简单说明：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、从一个简答的例子开始，了解box-shadow的生成过程"><span class="nav-number"></span> <span class="nav-text">二、从一个简答的例子开始，了解box-shadow的生成过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、进一步了解参数"><span class="nav-number"></span> <span class="nav-text">三、进一步了解参数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#offset"><span class="nav-number">0.1.</span> <span class="nav-text">offset</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#blur-radius"><span class="nav-number">0.2.</span> <span class="nav-text">blur-radius</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#spread-radius"><span class="nav-number">0.3.</span> <span class="nav-text">spread-radius</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#spread-radius-负值"><span class="nav-number">0.4.</span> <span class="nav-text">spread-radius 负值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#inset"><span class="nav-number">0.5.</span> <span class="nav-text">inset</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、补充"><span class="nav-number"></span> <span class="nav-text">四、补充</span></a></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vay</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '5UHQL8BbbzO7PJ1RiLyB8rjl-gzGzoHsz',
+    appKey: 'qOwaDs9XNM9SVMhu8kNxL5pT',
+    placeholder: '说点什么吧...',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
